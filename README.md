@@ -19,6 +19,12 @@ This jquery plugin has built-in validation for form
 
 ### invalidCallback 
 <div>this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation</div>
+#### Ex.
+```javascript
+	invalidCallback:function(errorMessage) {
+		console.log(errorMessage);
+	}
+```
 ---
 
 
