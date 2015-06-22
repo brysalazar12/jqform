@@ -14,7 +14,9 @@ This jquery plugin has built-in validation for form
 * **max:** this will check if the value is less than or equal to max value
 * **min:** this will check if the value is greater than or equal to min value
 * **regex:**
-* **compare:**   
+* **compare:**  
+
+
 ### Ex.
 ```html
 	<form id="myform">
