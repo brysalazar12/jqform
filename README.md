@@ -3,8 +3,8 @@ This jquery plugin has built-in validation for form
 
 # Documentation
 ## validation
+* array of validation of field
 ---
-array of validation of field
 
 * **required:** value will be required and it will be trim
 * **minLength:** this will check if the number of character greater than or equal to minLength value 
