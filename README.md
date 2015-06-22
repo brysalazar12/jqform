@@ -4,8 +4,8 @@ This jquery plugin has built-in validation for form
 ## Documentation
 ## Properties
 ---
-### validation
-<div>array of validation of field</div>
+### l. validation
+..* array of validation of field
 
 * **required:** value will be required and it will be trim
 * **minLength:** this will check if the number of character greater than or equal to minLength value 
@@ -23,6 +23,7 @@ This jquery plugin has built-in validation for form
 	<form id="myform">
 		<input type="text" id="first_name" data-label="First Name" name="firstname" />
 		<input type="text" id="last_name" data-label="Last Name" name="lastname" />
+		<input type="text" id="age" data-label="Age" name="age" />
 	</form>
 ```
 **javascript**
@@ -31,6 +32,7 @@ This jquery plugin has built-in validation for form
 		validation:[
 			{'first_name':'required|minLength:2|maxLength:30'},
 			{'last_name':'required|minLength:2|maxLength:30'},
+			{'age':'required|int|max:60|min:18'}
 		]
 	});
 ```
@@ -39,12 +41,16 @@ This jquery plugin has built-in validation for form
 ### invalidCallback 
 <div>this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation</div>
 #### Ex.
+**javascript**
 ```javascript
 	invalidCallback:function(errorMessages) {
 		console.log(errorMessage);
 	}
 ```
 ---
+
+### validCallback
+
 
 ### 
 
