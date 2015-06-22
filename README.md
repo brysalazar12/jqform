@@ -12,11 +12,13 @@ This jquery plugin has built-in validation for form
 * **int:** this will check if the value is numeric
 * **max:** this will check if the value is less than or equal to max value
 * **min:** this will check if the value is greater than or equal to min value
+<br/>
 ### TODO 
 * regex
 * compare
---
-## invalidCallback **this will when the form is submitted and this not pass the validation**
+---
+## invalidCallback 
+<div>this will be trigger when the form is submitted and if values did not passed the validation</div>
 
 
 # Example:
