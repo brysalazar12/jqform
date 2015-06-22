@@ -3,7 +3,7 @@ This jquery plugin has built-in validation for form
 
 # Documentation
 ## validation
-* array of validation of field
+<div>array of validation of field</div>
 ---
 
 * **required:** value will be required and it will be trim
