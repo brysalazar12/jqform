@@ -1,6 +1,27 @@
 # jqForm
 This jquery plugin has built-in validation for form
 
+## Example:
+```html
+	<form id="registration_form">
+		<input type="text" id="first_name" data-label="First Name" name="firstname" />
+		<input type="text" id="last_name" data-label="Last Name" name="lastname" />
+		<input type="submit" value="Register" />
+	</form>
+```
+```javascript
+	$('#registration_form').jqForm({
+		validation:[
+			{'first_name':'required|minLength:2|maxLength:30'},
+			{'last_name':'required|minLength:2|maxLength:30'},
+		],
+		validCallback: function(dataForm) {
+			// do some ajax
+		}
+	});
+```
+
+
 ## Documentation
 ## Properties
 ---
@@ -47,7 +68,7 @@ array of validation of field
 this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation.
 
 
-**errorMessages** list of error messages
+**errorMessages:** list of error messages
 
 #### Example:
 **html**
