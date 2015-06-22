@@ -13,6 +13,7 @@ This jquery plugin has built-in validation for form
 ### TODO 
 * regex
 * compare
+--
 ## invalidCallback **this will when the form is submitted and this not pass the validation**
 
 
