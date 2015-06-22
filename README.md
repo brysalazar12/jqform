@@ -19,13 +19,14 @@ array of validation of field
 * **compare:**  
 
 
-#### Ex.
+#### Example:
 **html**
 ```html
 	<form id="myform">
 		<input type="text" id="first_name" data-label="First Name" name="firstname" />
 		<input type="text" id="last_name" data-label="Last Name" name="lastname" />
 		<input type="text" id="age" data-label="Age" name="age" />
+		<input type="submit" value="Send" />
 	</form>
 ```
 **javascript**
@@ -45,11 +46,15 @@ array of validation of field
 
 this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation.
 
-#### Ex.
+
+**errorMessages** list of error messages
+
+#### Example:
 **html**
 ```html
-	<form>
+	<form id="myform">
 		<input type="text" name="amount" data-label="Amount" id="amount" />
+		<input type="submit" value="Send" />
 	</form>
 ```
 **javascript**
@@ -67,7 +72,7 @@ this function with argument errorMessages will be trigger when the form is submi
 
 
 this function with argument formData will be trigger when the form is submitted and all field values are valid.
-#### Ex.
+#### Example:
 **javascript**
 ```javascript
 	validCallback:function(formData) {
@@ -76,11 +81,19 @@ this function with argument formData will be trigger when the form is submitted 
 ```
 ---
 
-####
-
-### 
+### 4. addCustomValidator
 
 
+this function is use to create custom validation
+#### Ex.
+**html**
+```html
+
+```
+**javascript**
+```javascript
+
+```
 # Example:
 ```javascript
 $('#myform').jqForm((){
