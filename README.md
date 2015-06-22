@@ -2,6 +2,7 @@
 This jquery plugin has built-in validation for form
 
 ## Example:
+**html**
 ```html
 	<form id="registration_form">
 		<input type="text" id="first_name" data-label="First Name" name="firstname" />
@@ -9,6 +10,7 @@ This jquery plugin has built-in validation for form
 		<input type="submit" value="Register" />
 	</form>
 ```
+**javascript**
 ```javascript
 	$('#registration_form').jqForm({
 		validation:[
