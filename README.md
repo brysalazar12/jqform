@@ -46,9 +46,16 @@ array of validation of field
 this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation.
 
 #### Ex.
+**html**
+```html
+	<form>
+		<input type="text" name="amount" data-label="Amount" id="amount" />
+	</form>
+```
 **javascript**
 ```javascript
 	$('#myform').jqForm({
+		validation:[{'amount':'required|int'}],
 		invalidCallback:function(errorMessages) {
 			console.log(errorMessage);
 		}
