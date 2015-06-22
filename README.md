@@ -16,7 +16,21 @@ This jquery plugin has built-in validation for form
 * **min:** this will check if the value is greater than or equal to min value
 * **regex:**
 * **compare:** 
-
+### Ex.
+```html
+	<form id="myform">
+		<input type="text" id="first_name" data-label="First Name" name="firstname" />
+		<input type="text" id="last_name" data-label="Last Name" name="lastname" />
+	</form>
+```
+```javascript
+	$('#myform').jqForm({
+		validation:[
+		{'first_name':'required|minLength:2|maxLength:30'},
+		{'last_name':'required|minLength:2|maxLength:30'},
+		]
+	});
+```
 ---
 
 ### invalidCallback 
