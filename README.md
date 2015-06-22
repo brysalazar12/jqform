@@ -2,9 +2,11 @@
 This jquery plugin has built-in validation for form
 
 ## Documentation
+## Properties
+---
+
 ### validation
 <div>array of validation of field</div>
----
 
 * **required:** value will be required and it will be trim
 * **minLength:** this will check if the number of character greater than or equal to minLength value 
@@ -21,18 +23,20 @@ This jquery plugin has built-in validation for form
 <div>this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation</div>
 #### Ex.
 ```javascript
-	invalidCallback:function(errorMessage) {
+	invalidCallback:function(errorMessages) {
 		console.log(errorMessage);
 	}
 ```
 ---
+
+### 
 
 
 
 # Example:
 ```javascript
 $('#myform').jqForm((){
-	invalidCallback:function()
+	invalidCallback:function(errorMessages)
 		{
 			alert('invalid');
 		}
