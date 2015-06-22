@@ -19,7 +19,7 @@ array of validation of field
 * **compare:**  
 
 
-### Ex.
+#### Ex.
 **html**
 ```html
 	<form id="myform">
@@ -43,7 +43,7 @@ array of validation of field
 ### 2. invalidCallback 
 
 
-this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation
+this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation.
 
 #### Ex.
 **javascript**
@@ -54,8 +54,17 @@ this function with argument errorMessages will be trigger when the form is submi
 ```
 ---
 
-### validCallback
+### 3. validCallback
+**javascript**
+```javascript
+	validCallback:function(formData) {
+		console.log(formData);
+	}
+```
+---
 
+this function with argument formData will be trigger when the form is submitted and all field values are valid.
+####
 
 ### 
 
