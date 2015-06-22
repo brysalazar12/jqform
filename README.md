@@ -4,7 +4,7 @@ This jquery plugin has built-in validation for form
 ## Documentation
 ## Properties
 ---
-
+```
 ### validation
 <div>array of validation of field</div>
 
@@ -17,6 +17,7 @@ This jquery plugin has built-in validation for form
 * **regex:**
 * **compare:** 
 ### Ex.
+```
 ```html
 	<form id="myform">
 		<input type="text" id="first_name" data-label="First Name" name="firstname" />
