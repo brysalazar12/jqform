@@ -55,6 +55,10 @@ this function with argument errorMessages will be trigger when the form is submi
 ---
 
 ### 3. validCallback
+
+
+this function with argument formData will be trigger when the form is submitted and all field values are valid.
+#### Ex.
 **javascript**
 ```javascript
 	validCallback:function(formData) {
@@ -63,7 +67,6 @@ this function with argument errorMessages will be trigger when the form is submi
 ```
 ---
 
-this function with argument formData will be trigger when the form is submitted and all field values are valid.
 ####
 
 ### 
