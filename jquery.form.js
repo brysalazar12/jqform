@@ -22,9 +22,8 @@
 			customMessage:[],
 			messageWrapper:'',
 			isDisplayError:true,
+			submitIfValid:false
 		};
-
-		var isValid = false;
 
 		var settings = $.extend(true, {}, defaults, options);
 
@@ -188,9 +187,10 @@
 				}
 
 				// valid
-				if(isValid)
+				if(Object.keys(errorMessages).length < 1)
 				{
 					settings.validCallback($(this).serialize());
+					return settings.submitIfValid;
 				}
 				else
 				{
@@ -202,36 +202,3 @@
 		});
 	};
 }(jQuery));
-/*
-
-<form id="myform">
-	<input type="text" name="first_name" id="first_name" />
-	<input type="text" name="last_name" id="last_name" />
-	<input type="text" name="age" id="age" />
-</form>
-
-				$('#myform').jqForm({
-					invalidCallback:function(errorMessages){
-//						alert('invalid');
-					},
-					validation:[
-						{'first_name':'required|minLength:2|maxLength:10|myvalidator:20'},
-//						{'password':'compare:confirmpassword,=|minLength:7'},
-//						{'last_name':'required|minLength:2|maxLength:10'}
-					],
-					// customMessage:[
-						// {'first_name.required':'First Name is required.'}
-					// ],
-					addCustomValidator:[
-						{
-							'myvalidator':function(val,param){
-								if(val != param)
-									return ' should equal to ' + param;
-								return true;
-							}
-						}
-					],
-					messageWrapper:'<div class="error">:message</div>'
-				});
-
-*/
