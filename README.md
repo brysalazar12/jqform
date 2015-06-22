@@ -1,8 +1,8 @@
 # jqForm
 This jquery plugin has built-in validation for form
 
-# Documentation
-## validation
+## Documentation
+### validation
 <div>array of validation of field</div>
 ---
 
@@ -12,14 +12,11 @@ This jquery plugin has built-in validation for form
 * **int:** this will check if the value is numeric
 * **max:** this will check if the value is less than or equal to max value
 * **min:** this will check if the value is greater than or equal to min value
+* **regex:**
+* **compare:** 
+
 ---
-<div></div>
-### TODO 
-<div>
-* regex
-* compare
-</div>
----
+
 ## invalidCallback 
 <div>this will be trigger when the form is submitted and if values did not passed the validation</div>
 
