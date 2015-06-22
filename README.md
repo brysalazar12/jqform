@@ -113,13 +113,17 @@ this function is use to create custom validation
 ```html
 	<form id="myform">
 		<input type="text" name="gender" id="gender" />
+		<input type="text" name="test" id="testfield" />
 		<input type="submit" value="Send" />
 	</form>
 ```
 **javascript**
 ```javascript
 	$('#myform').jqForm({
-		validation:[{'gender':'myGenderValidator:male,female'}],
+		validation:[
+			{'gender':'myGenderValidator:male,female'},
+			{'testfield':'testingValidator:testing'}
+		],
 		addCustomValidator:[
 			{'myGenderValidator':function(val,param){
 					if(val != param[0] && val != param[1])
@@ -127,7 +131,12 @@ this function is use to create custom validation
 					return true;
 				}
 			},
-			{}
+			{'testingValidator':function(val,param){
+					if(val !== param[0])
+						return ' not equal to testing';
+					return true;
+				}
+			}
 		]
 	});
 ```
