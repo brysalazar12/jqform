@@ -18,7 +18,7 @@ This jquery plugin has built-in validation for form
 			{'last_name':'required|minLength:2|maxLength:30'},
 		],
 		validCallback: function(dataForm) {
-			// do some ajax
+			// do some ajax or normal submit form
 		}
 	});
 ```
@@ -30,16 +30,16 @@ This jquery plugin has built-in validation for form
 ### l. validation
 
 
-array of validation of field
+Array of validation of field
 
-* **required:** value will be required and it will be trim
-* **minLength:** this will check if the number of character greater than or equal to minLength value
-* **maxLength:** this will check if the number of character is less than or equal to maxLength value
-* **int:** this will check if the value is numeric
-* **max:** this will check if the value is less than or equal to max value
-* **min:** this will check if the value is greater than or equal to min value
-* **regex:**
-* **compare:**  
+* **required:** Value will be required and it will be trim
+* **minLength:** This will check if the number of character greater than or equal to minLength value
+* **maxLength:** This will check if the number of character is less than or equal to maxLength value
+* **int:** This will check if the value is numeric
+* **max:** This will check if the value is less than or equal to max value
+* **min:** This will check if the value is greater than or equal to min value
+* **regex: TODO**
+* **compare: TODO**  
 
 
 #### Example:
@@ -67,7 +67,7 @@ array of validation of field
 ### 2. invalidCallback 
 
 
-this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation.
+This function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation.
 
 
 **errorMessages:** list of error messages
@@ -94,7 +94,7 @@ this function with argument errorMessages will be trigger when the form is submi
 ### 3. validCallback
 
 
-this function with argument formData will be trigger when the form is submitted and all field values are valid.
+This function with argument formData will be trigger when the form is submitted and all field values are valid.
 #### Example:
 **javascript**
 ```javascript
@@ -107,13 +107,13 @@ this function with argument formData will be trigger when the form is submitted 
 ### 4. addCustomValidator
 
 
-this function is use to create custom validation
+This function is use to create custom validation
 #### Ex.
 **html**
 ```html
 	<form id="myform">
-		<input type="text" name="gender" id="gender" />
-		<input type="text" name="test" id="testfield" />
+		<input type="text" data-label="Gender" name="gender" id="gender" />
+		<input type="text" name="test" data-label="My Test Field" id="testfield" />
 		<input type="submit" value="Send" />
 	</form>
 ```
@@ -140,3 +140,32 @@ this function is use to create custom validation
 		]
 	});
 ```
+---
+
+### 5. showErrorMessage
+
+
+This property is boolean by default true, if false it will not display all error messages.
+
+---
+
+### 6. customMessage
+
+
+This list of message will be use instead the default error messages
+
+**html**
+```html
+	<form id="thisform">
+		<input type="text" name="first_name" id="first_name" />
+		<input type="submit" value="Send" />
+	</form>
+```
+**javascript**
+```javascript
+	$('#thisform').jqForm({
+		validation:[],
+		
+	});
+```
+---
