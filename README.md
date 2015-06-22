@@ -22,7 +22,7 @@ This jquery plugin has built-in validation for form
 		}
 	});
 ```
-
+---
 
 ## Documentation
 ## Properties
@@ -111,18 +111,23 @@ this function is use to create custom validation
 #### Ex.
 **html**
 ```html
-
+	<form id="myform">
+		<input type="text" name="gender" id="gender" />
+		<input type="submit" value="Send" />
+	</form>
 ```
 **javascript**
 ```javascript
-
-```
-# Example:
-```javascript
-$('#myform').jqForm((){
-	invalidCallback:function(errorMessages)
-		{
-			alert('invalid');
-		}
-});
+	$('#myform').jqForm({
+		validation:[{'gender':'myGenderValidator:male,female'}],
+		addCustomValidator:[
+			{'myGenderValidator':function(val,param){
+					if(val != param[0] && val != param[1])
+						return ' invalid gender';
+					return true;
+				}
+			},
+			{}
+		]
+	});
 ```
