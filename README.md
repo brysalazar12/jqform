@@ -48,9 +48,11 @@ this function with argument errorMessages will be trigger when the form is submi
 #### Ex.
 **javascript**
 ```javascript
-	invalidCallback:function(errorMessages) {
-		console.log(errorMessage);
-	}
+	$('#myform').jqForm({
+		invalidCallback:function(errorMessages) {
+			console.log(errorMessage);
+		}
+	});
 ```
 ---
 
@@ -70,7 +72,6 @@ this function with argument formData will be trigger when the form is submitted 
 ####
 
 ### 
-
 
 
 # Example:
