@@ -40,8 +40,11 @@ array of validation of field
 ```
 ---
 
-### invalidCallback 
-<div>this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation</div>
+### 2. invalidCallback 
+
+
+this function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation
+
 #### Ex.
 **javascript**
 ```javascript
