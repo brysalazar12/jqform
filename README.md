@@ -62,7 +62,7 @@ Array of validation of field
 ```
 ---
 
-### 2. invalid 
+### 2. error 
 
 
 This function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation.
@@ -82,21 +82,21 @@ This function with argument errorMessages will be trigger when the form is submi
 ```javascript
 	$('#myform').jqForm({
 		rules:[{'amount':'required|numeric'}],
-		invalid:function(errorMessages) {
+		error:function(errorMessages) {
 			console.log(errorMessage);
 		}
 	});
 ```
 ---
 
-### 3. valid
+### 3. success
 
 
 This function with argument formData will be trigger when the form is submitted and all field values are valid.
 #### Example:
 **javascript**
 ```javascript
-	valid:function(formData) {
+	success:function(formData) {
 		console.log(formData);
 	}
 ```
