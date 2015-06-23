@@ -37,7 +37,7 @@ Array of validation of field
 * **max:** This will check if the value is less than or equal to max value if **numeric** else it will check the number of character
 * **min:** This will check if the value is greater than or equal to min value **numeric** else it will check the number of character
 * **regex: TODO**
-* **compare: TODO**  
+* **compare:** This will compare two field  
 * **format: TODO** check if valid file format
 
 
