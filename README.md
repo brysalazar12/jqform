@@ -144,7 +144,7 @@ This function is use to create custom validation
 ### 5. message
 
 
-This list of message will be use instead the default error messages
+This list of message will be use instead the default error messages. The format is field id **.** validator name.
 
 **html**
 ```html
@@ -157,10 +157,11 @@ This list of message will be use instead the default error messages
 ```javascript
 	$('#thisform').jqForm({
 		rules:[
-			{'first_name':'required'}
+			{'first_name':'required|max:30'}
 		],
 		message:[
 			{'first_name.required':'First Name is required.'},
+			{'first_name.max':'Maximum length of First Name is ' + 30},
 		]
 		
 	});
