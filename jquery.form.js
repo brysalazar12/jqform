@@ -71,30 +71,32 @@
 			// field, operator
 			compare:function(val,param){
 				var val2 = $('#'+param[0]).val();
-				var label 2 = $('#'+field).attr('data-label');
-				if(label == '')
-					label = field;
+				var label2 = $('#'+param[0]).attr('data-label');
+
+				if(label2 == undefined)
+					label2 = param[0];
+
 				switch(param[1])
 				{
 					case '==':
 						if(val !== val2)
-							return ' should equal to ' + label;
+							return ' should equal to ' + label2;
 						break;
 					case '<=':
 						if(val > val2)
-							return ' should less than or equal to ' + label;
+							return ' should less than or equal to ' + label2;
 						break;
 					case '>=':
 						if(val < val2)
-							return ' should greater than or equal to ' + label;
+							return ' should greater than or equal to ' + label2;
 						break;
 					case '>':
 						if(val <= val2)
-							return ' should greater than to ' + label;
+							return ' should greater than to ' + label2;
 						break;
 					case '<':
 						if(val >= val2)
-							return ' should less than to ' + label;
+							return ' should less than to ' + label2;
 						break;
 				}
 				return true;
@@ -170,7 +172,7 @@
 							if(aValidator.length > 1)
 							{
 								var params = aValidator[1].split(',');
-								var message = true;
+								
 								if(isRequired)
 									message = validators['required'](fieldValue);
 
@@ -185,7 +187,7 @@
 								if(isRequired)
 									message = validators['required'](fieldValue);
 
-								if(isNumeric)
+								if(isNumeric && message === true)
 									message = validators['numeric'](fieldValue);
 
 								if(message === true)									
