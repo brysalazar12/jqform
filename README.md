@@ -138,16 +138,10 @@ This function is use to create custom validation
 		]
 	});
 ```
----
-
-### 5. showError
-
-
-This property is boolean by default true, if false it will not display all error messages.
 
 ---
 
-### 6. message
+### 5. message
 
 
 This list of message will be use instead the default error messages
@@ -172,3 +166,46 @@ This list of message will be use instead the default error messages
 	});
 ```
 ---
+
+### 6. wrapper
+
+This property is string and use for wrapping error messages. The important is **:message**, it will be replace by real error message
+
+```javascript
+	$('#selector').jqForm({
+		wrapper:'<span>:message</span>',
+	});
+```
+
+### 7. showError
+
+
+This property is boolean by default true, if false it will not display all error messages.
+
+```javascript
+	$('#selector').jqForm({
+		showError:false,
+	});
+```
+
+### 8. submitIfValid
+
+
+This property is boolean by default false, if true and all field passed the validation it will submit the form
+
+```javascript
+	$('#selector').jqForm({
+		submitIfValid:true,
+	});
+```
+---
+
+### 9. errorClass
+
+This property is use to set the error class of error field. Default is **error** class
+
+```javascript
+	$('#selector').jqForm({
+		errorClass:my_error,
+	});
+```
