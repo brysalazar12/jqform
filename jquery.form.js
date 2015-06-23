@@ -14,8 +14,8 @@
 
 		var defaults = {
 			rules:[],
-			invalid:function(errorMessages){},
-			valid:function(formData){},
+			error:function(errorMessages){},
+			success:function(formData){},
 			validator:[],
 			messages:[],
 			wrapper:'<div class="error">:message</div>',
@@ -257,13 +257,13 @@
 				// valid
 				if(Object.keys(errorMessages).length < 1)
 				{
-					settings.valid($(this).serialize());
+					settings.success($(this).serialize());
 					return settings.submitIfValid;
 				}
 				else
 				{
 					// invalid
-					settings.invalid(errorMessages);
+					settings.error(errorMessages);
 					return false;
 				}
 			});
