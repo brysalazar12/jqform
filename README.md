@@ -206,6 +206,6 @@ This property is use to set the error class of error field. Default is **error**
 
 ```javascript
 	$('#selector').jqForm({
-		errorClass:my_error,
+		errorClass:'my_error',
 	});
 ```
