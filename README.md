@@ -14,10 +14,10 @@ This jquery plugin has built-in validation for form
 ```javascript
 	$('#registration_form').jqForm({
 		rule:[
-			{'first_name':'required|minLength:2|maxLength:30'},
-			{'last_name':'required|minLength:2|maxLength:30'},
+			{'first_name':'required|min:2|max:30'},
+			{'last_name':'required|min:2|max:30'},
 		],
-		validCallback: function(dataForm) {
+		valid: function(dataForm) {
 			// do some ajax or normal submit form
 		}
 	});
