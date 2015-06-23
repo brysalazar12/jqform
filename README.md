@@ -174,7 +174,7 @@ This list of messages will be use instead the default error messages. The format
 
 ### 6. wrapper
 
-This property is string and use for wrapping error messages. The important is **:message**, it will be replace by real error message
+This property is string and use for wrapping error messages.Most important here is the **:message** , it will be replace by real error message
 
 ```javascript
 	$('#selector').jqForm({
