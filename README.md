@@ -48,6 +48,8 @@ Array of validation of field
 		<input type="text" id="first_name" data-label="First Name" name="firstname" />
 		<input type="text" id="last_name" data-label="Last Name" name="lastname" />
 		<input type="text" id="age" data-label="Age" name="age" />
+		<input type="password" id="password" data-label="Password" name="password" />
+		<input type="password" id="confirmpassword" data-label="Confirm Password" name="confirmpassword" />
 		<input type="submit" value="Send" />
 	</form>
 ```
@@ -57,7 +59,8 @@ Array of validation of field
 		validation:[
 			{'first_name':'required|min:2|max:30'},
 			{'last_name':'required|min:2|max:30'},
-			{'age':'required|numeric|max:60|min:18'}
+			{'age':'required|numeric|max:60|min:18'},
+			{'password':'required|compare:confirmpassword,=='}
 		]
 	});
 ```
