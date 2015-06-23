@@ -9,20 +9,19 @@
 
 	$.fn.jqForm = function(options) {
 
-		var errorMessages = {
-
-		};
+		var errorMessages = {};
+		var isNumeric = false;
 
 		var defaults = {
-			validation:[],
-			invalidCallback:function(errorMessages){},
-			validCallback:function(formData){},
-			addCustomValidator:[],
-			showErrorMessages:true,
-			customMessage:[],
-			messageWrapper:'',
-			isDisplayError:true,
-			submitIfValid:false
+			rules:[],
+			invalid:function(errorMessages){},
+			valid:function(formData){},
+			validator:[],
+			message:[],
+			wrapper:'<div class="error">:message</div>',
+			showError:true,
+			submitIfValid:false,
+			errorClass:'error'
 		};
 
 		var settings = $.extend(true, {}, defaults, options);
@@ -33,30 +32,37 @@
 					return ' is required.';
 				return true;
 			},
-			minLength:function(val,args){
-				var len = args[0];
-				if($.trim(val).length < len)
-					return ' length should not less than ' + len;
-				return true;
-			},
-			maxLength:function(val,len){
-				if($.trim(val).length > len)
-					return ' length should not greater than ' + len;
-				return true;
-			},
-			int:function(val){
+			numeric:function(val){
 				if(isNaN(val))
 					return ' is not a number.';
 				return true;
 			},
 			max:function(val,maxVal){
-				if(val > maxVal)
-					return ' should less than or equal to ' + maxVal;
+				if(isNumeric)
+				{
+					if(parseInt(val) > maxVal)
+						return ' should less than or equal to ' + maxVal;
+				}
+				else
+				{
+					if($.trim(val).length > maxVal)
+						return ' length should not greater than ' + maxVal;
+				}
+
 				return true;
 			},
 			min:function(val,minVal){
-				if(val < minVal)
-					return ' should greater than or equal to ' + minVal;
+				if(isNumeric)
+				{
+					if(parseInt(val) < minVal)
+						return ' should greater than or equal to ' + minVal;
+				}
+				else
+				{
+					if($.trim(val).length < minVal)
+						return ' length should not less than ' + minVal;
+				}
+
 				return true;
 			},
 			regex:function(val,regex){},
@@ -67,9 +73,9 @@
 
 		function _mergeDefaultValidatorAndCustomValidator()
 		{
-			for(var i = 0; i < settings.addCustomValidator.length; i++)
+			for(var i = 0; i < settings.validator.length; i++)
 			{
-				validators = $.extend({}, validators, settings.addCustomValidator[i]);
+				validators = $.extend({}, validators, settings.validator[i]);
 			}
 		}
 
@@ -78,12 +84,12 @@
 			var message = false;
 			var keyCustomMessage = field + '.' + validatorName;
 
-			for(var i = 0; i < settings.customMessage.length; i++ )
+			for(var i = 0; i < settings.message.length; i++ )
 			{
-				for(var k in settings.customMessage[i])
+				for(var k in settings.message[i])
 				{
 					if(k === keyCustomMessage)
-						message = settings.customMessage[i][k];
+						message = settings.message[i][k];
 				}
 			}
 			return message;
@@ -99,14 +105,28 @@
 			return validators[validatorName](fieldValue);
 		}
 
+
 		function _executeValidation()
 		{
 
 			errorMessages = {};
-			$.each(settings.validation,function(k,v){
+			$.each(settings.rules,function(k,v){
 				$.each(v,function(field,fieldValidations){
 					var fieldValue = $('#'+field).val();
+					$('#'+field).removeClass(settings.errorClass);
 					var afieldValidations = fieldValidations.split("|");
+					var isRequired = false;
+					isNumeric = false;
+
+
+					for(var i = 0; i < afieldValidations.length; i++)
+					{
+						if(afieldValidations[i] == 'numeric')
+							isNumeric = true;
+						if(afieldValidations[i] == 'required')
+							isRequired = true;
+					}
+
 					for(var i = 0; i < afieldValidations.length; i++)
 					{
 						var aValidator = afieldValidations[i].split(':');
@@ -119,31 +139,48 @@
 							if(aValidator.length > 1)
 							{
 								var params = aValidator[1].split(',');
-								message = validators[validatorName](fieldValue,params);
+								var message = true;
+								if(isRequired)
+									message = validators['required'](fieldValue);
+
+								if(isNumeric && message === true)
+									message = validators['numeric'](fieldValue);
+
+								if(message === true)
+									message = validators[validatorName](fieldValue,params);
 							}
 							else
 							{
-								message = validators[validatorName](fieldValue);
+								if(isRequired)
+									message = validators['required'](fieldValue);
+																	
+								if(isNumeric)
+									message = validators['numeric'](fieldValue);
+
+								if(message === true)									
+									message = validators[validatorName](fieldValue);
 							}
-								if(message !== true)
+
+							if(message !== true)
+							{
+								$('#'+field).addClass(settings.errorClass);
+								// check if has custom error message
+								var customMessage = _hasCustomMessage(field,validatorName);
+								if(customMessage !== false)
 								{
-									// check if has custom error message
-									var customMessage = _hasCustomMessage(field,validatorName);
-									if(customMessage !== false)
+									errorMessages[field] = customMessage;
+								}
+								else
+								{
+									var label = field;
+									if($('#'+field).attr('data-label'))
 									{
-										errorMessages[field] = customMessage;
+										label = $('#'+field).attr('data-label');
 									}
-									else
-									{
-										var label = field;
-										if($('#'+field).attr('data-label'))
-										{
-											label = $('#'+field).attr('data-label');
-										}
-										errorMessages[field] = label + message;
-										break;
-									}
-								}							
+									errorMessages[field] = label + message;
+									break;
+								}
+							}							
 						}
 						else
 						{
@@ -166,9 +203,9 @@
 			errorContainer = [];
 
 			$.each(errorMessages,function(field,errMsg){
-				if(settings.messageWrapper != '')
+				if(settings.wrapper != '')
 				{
-					var message = settings.messageWrapper.replace(':message',errMsg);
+					var message = settings.wrapper.replace(':message',errMsg);
 					var m = $(message);
 					$('#'+field).before(m);
 					errorContainer.push(m);
@@ -181,7 +218,7 @@
 
 				_mergeDefaultValidatorAndCustomValidator();
 				_executeValidation();
-				if(settings.isDisplayError)
+				if(settings.showError)
 				{
 					_displayErrorMessages();
 				}
@@ -189,13 +226,13 @@
 				// valid
 				if(Object.keys(errorMessages).length < 1)
 				{
-					settings.validCallback($(this).serialize());
+					settings.valid($(this).serialize());
 					return settings.submitIfValid;
 				}
 				else
 				{
 					// invalid
-					settings.invalidCallback(errorMessages);
+					settings.invalid(errorMessages);
 					return false;
 				}
 			});
