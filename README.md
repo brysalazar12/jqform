@@ -13,7 +13,7 @@ This jquery plugin has built-in validation for form
 **javascript**
 ```javascript
 	$('#registration_form').jqForm({
-		validation:[
+		rule:[
 			{'first_name':'required|minLength:2|maxLength:30'},
 			{'last_name':'required|minLength:2|maxLength:30'},
 		],
@@ -27,17 +27,15 @@ This jquery plugin has built-in validation for form
 ## Documentation
 ## Properties
 ---
-### l. validation
+### l. rules
 
 
 Array of validation of field
 
 * **required:** Value will be required and it will be trim
-* **minLength:** This will check if the number of character greater than or equal to minLength value
-* **maxLength:** This will check if the number of character is less than or equal to maxLength value
-* **int:** This will check if the value is numeric
-* **max:** This will check if the value is less than or equal to max value
-* **min:** This will check if the value is greater than or equal to min value
+* **numeric:** This will check if the value is numeric
+* **max:** This will check if the value is less than or equal to max value if **numeric** else it will check the number of character
+* **min:** This will check if the value is greater than or equal to min value **numeric** else it will check the number of character
 * **regex: TODO**
 * **compare: TODO**  
 
@@ -56,15 +54,15 @@ Array of validation of field
 ```javascript
 	$('#myform').jqForm({
 		validation:[
-			{'first_name':'required|minLength:2|maxLength:30'},
-			{'last_name':'required|minLength:2|maxLength:30'},
-			{'age':'required|int|max:60|min:18'}
+			{'first_name':'required|min:2|max:30'},
+			{'last_name':'required|min:2|max:30'},
+			{'age':'required|numeric|max:60|min:18'}
 		]
 	});
 ```
 ---
 
-### 2. invalidCallback 
+### 2. invalid 
 
 
 This function with argument errorMessages will be trigger when the form is submitted and if values did not passed the validation.
@@ -83,28 +81,28 @@ This function with argument errorMessages will be trigger when the form is submi
 **javascript**
 ```javascript
 	$('#myform').jqForm({
-		validation:[{'amount':'required|int'}],
-		invalidCallback:function(errorMessages) {
+		rules:[{'amount':'required|numeric'}],
+		invalid:function(errorMessages) {
 			console.log(errorMessage);
 		}
 	});
 ```
 ---
 
-### 3. validCallback
+### 3. valid
 
 
 This function with argument formData will be trigger when the form is submitted and all field values are valid.
 #### Example:
 **javascript**
 ```javascript
-	validCallback:function(formData) {
+	valid:function(formData) {
 		console.log(formData);
 	}
 ```
 ---
 
-### 4. addCustomValidator
+### 4. validator
 
 
 This function is use to create custom validation
@@ -120,11 +118,11 @@ This function is use to create custom validation
 **javascript**
 ```javascript
 	$('#myform').jqForm({
-		validation:[
+		rules:[
 			{'gender':'myGenderValidator:male,female'},
 			{'testfield':'testingValidator:testing'}
 		],
-		addCustomValidator:[
+		validator:[
 			{'myGenderValidator':function(val,param){
 					if(val != param[0] && val != param[1])
 						return ' invalid gender';
@@ -142,14 +140,14 @@ This function is use to create custom validation
 ```
 ---
 
-### 5. showErrorMessage
+### 5. showError
 
 
 This property is boolean by default true, if false it will not display all error messages.
 
 ---
 
-### 6. customMessage
+### 6. message
 
 
 This list of message will be use instead the default error messages
@@ -164,7 +162,12 @@ This list of message will be use instead the default error messages
 **javascript**
 ```javascript
 	$('#thisform').jqForm({
-		validation:[],
+		rules:[
+			{'first_name':'required'}
+		],
+		message:[
+			{'first_name.required':'First Name is required.'},
+		]
 		
 	});
 ```
