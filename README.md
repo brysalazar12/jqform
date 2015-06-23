@@ -210,3 +210,8 @@ This property is use to set the error class of error field. Default is **error**
 		errorClass:'my_error',
 	});
 ```
+---
+
+### 10. depends TODO
+
+### 11. trigger TODO
