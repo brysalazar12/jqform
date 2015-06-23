@@ -214,4 +214,10 @@ This property is use to set the error class of error field. Default is **error**
 
 ### 10. depends TODO
 
+
+Validation will have dependencies to be fire.
+
 ### 11. trigger TODO
+
+
+Validation will trigger on event of field
