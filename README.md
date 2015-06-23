@@ -216,8 +216,12 @@ This property is use to set the error class of error field. Default is **error**
 
 
 Validation will have dependencies to be fire.
+---
 
 ### 11. trigger TODO
 
 
 Validation will trigger on event of field
+---
+### TODO
+should able to get the value of select, textarea,checkbox,radio button
