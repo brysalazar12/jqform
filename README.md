@@ -13,7 +13,7 @@ This jquery plugin has built-in validation for form
 **javascript**
 ```javascript
 	$('#registration_form').jqForm({
-		rule:[
+		rules:[
 			{'first_name':'required|min:2|max:30'},
 			{'last_name':'required|min:2|max:30'},
 		],
@@ -141,10 +141,10 @@ This function is use to create custom validation
 
 ---
 
-### 5. message
+### 5. messages
 
 
-This list of message will be use instead the default error messages. The format is field id **.** validator name.
+This list of messages will be use instead the default error messages. The format is field id **.** validator name.
 
 **html**
 ```html
@@ -159,7 +159,7 @@ This list of message will be use instead the default error messages. The format 
 		rules:[
 			{'first_name':'required|max:30'}
 		],
-		message:[
+		messages:[
 			{'first_name.required':'First Name is required.'},
 			{'first_name.max':'Maximum length of First Name is ' + 30},
 		]
