@@ -203,6 +203,7 @@ This property is boolean by default false, if true and all field passed the vali
 
 ### 9. errorClass
 
+
 This property is use to set the error class of error field. Default is **error** class
 
 ```javascript
@@ -216,6 +217,7 @@ This property is use to set the error class of error field. Default is **error**
 
 
 Validation will have dependencies to be fire.
+
 ---
 
 ### 11. trigger TODO
@@ -223,5 +225,8 @@ Validation will have dependencies to be fire.
 
 Validation will trigger on event of field
 ---
+
 ### TODO
-should able to get the value of select, textarea,checkbox,radio button
+
+
+Should able to get the value of select, textarea,checkbox,radio button
