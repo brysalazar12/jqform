@@ -17,11 +17,12 @@
 			invalid:function(errorMessages){},
 			valid:function(formData){},
 			validator:[],
-			message:[],
+			messages:[],
 			wrapper:'<div class="error">:message</div>',
 			showError:true,
 			submitIfValid:false,
-			errorClass:'error'
+			errorClass:'error',
+			depends:[],
 		};
 
 		var settings = $.extend(true, {}, defaults, options);
@@ -66,7 +67,38 @@
 				return true;
 			},
 			regex:function(val,regex){},
-			compare:function(val,field,operator){}
+
+			// field, operator
+			compare:function(val,param){
+				var val2 = $('#'+param[0]).val();
+				var label 2 = $('#'+field).attr('data-label');
+				if(label == '')
+					label = field;
+				switch(param[1])
+				{
+					case '==':
+						if(val !== val2)
+							return ' should equal to ' + label;
+						break;
+					case '<=':
+						if(val > val2)
+							return ' should less than or equal to ' + label;
+						break;
+					case '>=':
+						if(val < val2)
+							return ' should greater than or equal to ' + label;
+						break;
+					case '>':
+						if(val <= val2)
+							return ' should greater than to ' + label;
+						break;
+					case '<':
+						if(val >= val2)
+							return ' should less than to ' + label;
+						break;
+				}
+				return true;
+			}
 		};
 
 		var errorContainer = [];
@@ -84,12 +116,12 @@
 			var message = false;
 			var keyCustomMessage = field + '.' + validatorName;
 
-			for(var i = 0; i < settings.message.length; i++ )
+			for(var i = 0; i < settings.messages.length; i++ )
 			{
-				for(var k in settings.message[i])
+				for(var k in settings.messages[i])
 				{
 					if(k === keyCustomMessage)
-						message = settings.message[i][k];
+						message = settings.messages[i][k];
 				}
 			}
 			return message;
@@ -108,7 +140,6 @@
 
 		function _executeValidation()
 		{
-
 			errorMessages = {};
 			$.each(settings.rules,function(k,v){
 				$.each(v,function(field,fieldValidations){
@@ -153,7 +184,7 @@
 							{
 								if(isRequired)
 									message = validators['required'](fieldValue);
-																	
+
 								if(isNumeric)
 									message = validators['numeric'](fieldValue);
 
