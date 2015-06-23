@@ -38,6 +38,7 @@ Array of validation of field
 * **min:** This will check if the value is greater than or equal to min value **numeric** else it will check the number of character
 * **regex: TODO**
 * **compare: TODO**  
+* **fileType: TODO** check if valid file format
 
 
 #### Example:
