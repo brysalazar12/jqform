@@ -1,4 +1,6 @@
 /**
+ * @author Bryan Salazar
+ * @version 1.0.0
  * jQuery Form Plugin
  * TODO: This plugin have validation
  * @param {type} $
@@ -143,7 +145,11 @@
 		function _executeValidation()
 		{
 			errorMessages = {};
+
+			// loop through all rules
 			$.each(settings.rules,function(k,v){
+
+				// loop through all field rules
 				$.each(v,function(field,fieldValidations){
 					var fieldValue = $('#'+field).val();
 					$('#'+field).removeClass(settings.errorClass);
@@ -152,6 +158,7 @@
 					isNumeric = false;
 
 
+					// check if there are numeric and required rules to be prioritize
 					for(var i = 0; i < afieldValidations.length; i++)
 					{
 						if(afieldValidations[i] == 'numeric')
@@ -160,6 +167,7 @@
 							isRequired = true;
 					}
 
+					// loop through all validator
 					for(var i = 0; i < afieldValidations.length; i++)
 					{
 						var aValidator = afieldValidations[i].split(':');
@@ -169,8 +177,10 @@
 						if(validators.hasOwnProperty(validatorName))
 						{
 							var message = true;
+							// check if validator's argument is greater than one
 							if(aValidator.length > 1)
 							{
+								// split argument by comma
 								var params = aValidator[1].split(',');
 								
 								if(isRequired)
