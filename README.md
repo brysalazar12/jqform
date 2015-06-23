@@ -56,7 +56,7 @@ Array of validation of field
 **javascript**
 ```javascript
 	$('#myform').jqForm({
-		validation:[
+		rules:[
 			{'first_name':'required|min:2|max:30'},
 			{'last_name':'required|min:2|max:30'},
 			{'age':'required|numeric|max:60|min:18'},
